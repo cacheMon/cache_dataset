@@ -1,22 +1,57 @@
 # Open-source Cache Dataset
 
-The ABO dataset is directly available on Amazon S3 at s3://amazon-berkeley-objects/, with the same structure as in the archives (see README).
-https://amazon-berkeley-objects.s3.us-east-1.amazonaws.com/index.html
-https://github.com/teamookla/ookla-open-data?tab=readme-ov-file
-https://assets.opendata.aws/aws-onboarding-handbook-for-data-providers-en-US.pdf#page=7.25
-https://github.com/awslabs/open-data-registry/
+The open-source cache dataset were compiled from multiple sources, including Microsoft, CloudPhysics, Tencent, Alibaba, Twitter, Meta production systems. 
+We provide both plain text and [oracleGeneral](https://github.com/1a1a11a/libCacheSim?tab=readme-ov-file#open-source-cache-traces) format. 
+
+You can use the dataset to perform different tasks, including but not limited to 
+* evaluating your caching systems, e.g., Memcached, Redis, database bufferpool
+* analysing the dataset to gain insights about how production systems work, and observing different access patterns, such as diurnal or weekly. 
+* designing and evaluating new distributed systems and databases. 
+
+The datasets are stored in AWS S3. You can either download the traces to your local cluster, or launch some EC2 instances to perform computation. Since the dataset is large, we recommend provisioning a cluster to run the computation. You can use [mountpoint](https://github.com/awslabs/mountpoint-s3) to mount the bucket on each node and [distComp](https://github.com/1a1a11a/distComp) to launch computation jobs. 
+
+
 ## Dataset description
-A table showing 
-dataset name 
-source 
+### Dataset summary
+| Dataset 	| Year 	|  	| Cache type 	| Time span (days) 	| # Trace 	| # Request (million) 	| Request  (TB) 	| # Object (million) 	| Object  (TB) 	| Source 	| Txt  format 	| OracleGeneral  format 	|
+|---	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|
+| Microsoft Cambridge 	| 2007 	|  	| block 	| 7 	| 13 	| 410 	| 10 	| 74 	| 3 	|  	|  	|  	|
+| FIU 	| 2008-2011 	|  	| block 	| 9-28 	| 9 	| 514 	| 1.7 	| 20 	| 0.057 	|  	|  	|  	|
+| CloudPhysics 	| 2015 	|  	| block 	| 7 	| 106 	| 2,114 	| 82 	| 492 	| 22 	|  	|  	|  	|
+| Systor 	| 2017 	|  	| block 	| 26 	| 6 	| 3,694 	| 88 	| 421 	| 15 	|  	|  	|  	|
+| Tencent Photo 	| 2018 	|  	| object 	| 8 	| 2 	| 5,650 	| 141 	| 1,038 	| 24 	|  	|  	|  	|
+| Wikimedia CDN 	| 2019 	|  	| object 	| 7 	| 3 	| 2,863 	| 200 	| 56 	| 13 	|  	|  	|  	|
+| Tencent CBS 	| 2020 	|  	| block 	| 8 	| 4030 	| 33,690 	| 1091 	| 551 	| 66 	|  	|  	|  	|
+| Alibaba Block 	| 2020 	|  	| block 	| 30 	| 652 	| 19,676 	| 664 	| 1702 	| 117 	|  	|  	|  	|
+| Twitter 	| 2020 	|  	| key-value 	| 7 	| 54 	| 195,441 	| 106 	| 10,650 	| 6 	|  	|  	|  	|
+| MetaKV 	| 2022 	|  	| key-value 	| 1 	| 5 	| 1,644 	| 958 	| 82 	| 76 	|  	|  	|  	|
+| MetaCDN 	| 2023 	|  	| object 	| 7 	| 3 	| 231 	| 8,800 	| 76 	| 1,563 	|  	|  	|  	|
 
-Format
-zstd compression 
+
+A more detailed description of each dataset can be found in the source link and the sections below. 
+
+### Dataset format 
+We provide both plain text format that is human readable and `oracleGeneral` format that is suitable for using with [libCacheSim](https://libcachesim.com) platform. 
+
+The oracleGeneral has the following format. 
+
+```
+struct {
+    uint32_t timestamp;
+    uint64_t obj_id;
+    uint32_t obj_size;
+    int64_t next_access_vtime;  // -1 if no next access
+}
+```
+
+All datasets are compressed with [zstd](https://github.com/facebook/zstd), you can use `zstd -d` to decompress the data. Note that libCacheSim can directly work with compressed data, so no decompression is needed if you use libCacheSim to run simulations. 
 
 
 
-### Key-value cache 
-#### Twitter Twemcache request traces
+
+
+## Key-value cache traces
+### Twitter Twemcache request traces
 
 Description
 
@@ -31,11 +66,11 @@ Raw dataset download link:
 Citation
 
 
-#### Meta Key-value cache traces
+### Meta Key-value cache traces
 
 
 
-#### 
+### 
 
 
 
