@@ -50,25 +50,74 @@ All datasets are compressed with [zstd](https://github.com/facebook/zstd), you c
 
 
 
-## Key-value cache traces
-### Twitter Twemcache request traces
-
-Description
-
-
-Foramt
-
-Original release https://github.com/twitter/cache-trace
-
-Raw dataset download link: 
+# Key-value cache traces
+## Twitter Twemcache request traces
+This dataset continas the traces from Twitter's in-memory key-value caching (Twemcache/Pelikan) clusters. 
+The traces were collected from 54 clusters in Mar 2020. The traces are one-week-long. 
+Note that these cache clusters are first-level caches, so the data popularity of this dataset is highly skewed. 
 
 
-Citation
+The details of the trace can be found in 
+[Juncheng Yang, Yao Yue, Rashmi Vinayak, A large scale analysis of hundreds of in-memory cache clusters at Twitter. 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20), 2020](https://www.usenix.org/conference/osdi20/presentation/yang).
+
+### Trace Format
+The original traces are plain text structured as comma-separated columns. Each row represents one request in the following format.
+
+* `timestamp`: the time when the cache receives the request, in sec
+* `anonymized` key: the original key with anonymization
+* `key size`: the size of key in bytes
+* `value size`: the size of value in bytes, could be 0 if it is a cache miss
+* `client id`: the anonymized clients (frontend service) who sends the request
+* `operation`: one of get/gets/set/add/replace/cas/append/prepend/delete/incr/decr
+* `TTL`: the time-to-live (TTL) of the object set by the client, it is 0 when the request is not a write request.
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
 
 
-### Meta Key-value cache traces
+
+## Meta Key-value cache traces
+This dataset contains traces from Meta [Cachelib](https://cachelib.org). 
+
+It has two datasets collected at different time and has different formats. The original release can be found at [here](https://cachelib.org/docs/Cache_Library_User_Guides/Cachebench_FB_HW_eval).
+
+### 202206
+Those are traces captured for 5 consecutive days from a Meta's key-value cache cluster consisting of 500 hosts
+Each host uses (roughly) 42 GB of DRAM and 930 GB of SSD for caching. 
+The open-source traces were merged from multiple hosts and the effective sampling ratio of is around 1/100.
+ 
+
+* `key`: anonymized requested object ID
+* `op`: operation, `GET` or `SET`,
+* `size`: the size of the object, could be 0 if it is a cache miss
+* `op_count`: number of operations in the current second
+* `key_size`: size of the object ID
 
 
+### 202401
+Those are traces captured for 5 consecutive days from a Meta's key-value cache cluster consisting of 8000 hosts
+Each host uses (roughly) 42 GB of DRAM and 930 GB of SSD for caching.The open-source traces were merged from multiple hosts and the effective sampling ratio of is around 1/125.
+
+* `op_time`: the time of the request 
+* `key`: anonymized requested object ID
+* `key_size`: size of the object ID
+* `op`: operation, `GET`, `GET_LEASE`, `SET`, `DELETE`
+* `op_count`: number of operations in the current second
+* `size`: the size of the object, could be 0 if it is a cache miss
+* `cache_hits`: the number of cache hits
+* `ttl`: time-to-live in seconds
+* `usecase`: identifies the tenant, i.e., application using distributed key-value cache
+* `sub_usecase`: further categorize the different traffics from the same usecase, but may be imcomplete or inaccurate
+
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
 
 ### 
 
@@ -77,60 +126,181 @@ Citation
 
 
 
-### Object cache 
-#### Wikipedia CDN request traces
+# Object cache 
+## WikiMedia CDN request traces
 
 
-#### Tencent Photo CDN request traces
+## Tencent Photo CDN request traces
 
 
-#### Meta CDN request traces
+## Meta CDN request traces
+This is a CDN request dataset collected in March 2023. 
+These traces were captured from Meta's 3 selected CDN cache clusters (named nha, prn, eag) respectively for 7 days. 
+
+Each cluster consists of 1000's of hosts. Each host uses (roughly) 40 GB of DRAM and 1.8TB of SSD for caching. 
+Traffic factor and scaled cache sizes are:
+* nha: 1/6.37, DRAM 6006 MB, NVM 272314 MB
+* prn: 1/4.58, DRAM 8357 MB, NVM 375956 MB
+* eag: 1/13.4, DRAM 2857 MB, NVM 129619 MB
+
+I believe these CDN cache clusters are the edge clusters (rather than FNA clusters) given their sizes and compulsory miss ratios. 
+Meta CDN uses a two-layer hierarchy, where the first layer is [FNA cluster](https://partners.facebook.com/network/landing_page) (they are also called MNA, Meta Network Appliance). FNA clusters are small and deployed inside ISP networks. Cache misses from the FNA cluster go to a larger edge cluster deployed in an IXP data center. 
+
+### Trace format
+* `timestamp`: the timestamp of the request
+* `cacheKey`: anonymized object ID
+* `OpType`: unknown, but it seems only contains value 1
+* `objectSize`: the size of the object in byte
+* `responseSize`: the HTTP response size 
+* `responseHeaderSize`: the HTTP response header size,
+* `rangeStart`: the start offset of a range request, -1 if it is not a range request
+* `rangeEnd` the end offset of a range request, -1 if it is not a range request
+* `TTL`: time-to-live in seconds
+* `SamplingRate`: trace collection sampling ratio, should be ignored because sampled traces from many hosts are mixed
+* `cache_hit`: value 1 indicates this request is a cache hit, 0 indicates a cache miss
+* `item_value`: unknown, value is either 0 or 1
+* `RequestHandler`: unknown 
+* `cdn_content_type_id`: annoymized content type id, it is either int or -
+* `vip_type`: unknown 
+* 
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
 
 
 
-### Block cache
-#### MSR Cambridge traces
+# Block cache
+## MSR Cambridge traces
 
 
-#### CloudPhysics traces
+### Trace format
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
+
+## CloudPhysics traces
 
 
 
-#### Tencent Cloud EBS traces
+### Trace format
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
+
+## Tencent Cloud EBS traces
 
 
 
-#### Alibaba Cloud EBS traces
+### Trace format
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
+
+## Alibaba Cloud EBS traces
 
 
-#### Meta Tectonic cache traces
+
+### Trace format
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
+
+## Meta Tectonic cache traces
+Those are traces captured for 5 consecutive days from a Meta's [block storage](https://engineering.fb.com/2021/06/21/data-infrastructure/tectonic-file-system) cluster consisting of 3000 hosts at the sampling ratio of 1/4000. 
+Each host uses (roughly) 10 GB of DRAM and 380 GB of SSD for caching. 
+The open-source traces were merged from multiple hosts and the effective sampling ratio of is around 1.
 
 
-## How to use the dataset
+### Trace format
+* `op_time`: the time of the request
+* `block_id`: the requested block ID 
+* `block_id_size`: the size of the requested block (in MB), this field is always 40
+* `io_size`: the requested size, note that requests often do not ask for the full block  
+* `io_offset`: the start offset in the block 
+* `user_name`: aonymized username (represent different use cases) 
+* `user_namespace`: aonymized namespace, can ignore, only one value 
+* `op_name`:  operation name, can be one of `getChunkData.NotInitialized`, `getChunkData.Permanent`, `putChunk.NotInitialized`, and `putChunk.Permanent`
+* `op_count`: the number of requests in the same second 
+* `host_name`: aonymized host name that serves the request 
+* `rs_shard_id`: reed-solomon shard ID
+
+
+### Download link
+* **Plain text**: 
+* **OracleGeneral format**: 
+
+---
+
+
+
+# How to use the dataset
 Because the size of these datasets, we recommend you to larger servers to run computation, such as VMs from AWS EC2.  
 
 
-### 
-
-### Reading the dataset 
+## Google synthetic I/O traces 
 
 
-### Plotting and analyzing the dataset
+
+## Baleen dataset 
 
 
-### Running cache simulations
+
+## IBM docker dataset 
+
+
+
+
+## Reading the dataset 
+
+
+## Plotting and analyzing the dataset
+
+
+## Running cache simulations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### An example jupyter notebook on AWS Sagemaker 
 
+## Note on the curated datasets
+Note that some open-source datasets are not included in this release. 
+These datasets often do not provide a clear description of how the data were collected.  
+
 
 ## Changelog
-
+* **2024/12/01** first version
 
 ## Contact
-
-
-## References
+If you have any question, please join the [Google Group](https://groups.google.com/g/cache-trace) or [Slack]. 
 
 
 ## License
@@ -143,10 +313,13 @@ No additional restrictions — You may not apply legal terms or technological me
 
 
 ## Acknowledgements
-
+The original traces were collected by contributors from multiple institutes, including Meta, Twitter, CloudPhysics, Microsoft, WikiMedia, Alibaba, Tencent, and several others. 
+This collection and converted traces are open-sourced by Juncheng Yang from School of Engineering and Applied Science at Harvard University. 
+The storage of this dataset is sponsored by AWS under open data agreement. 
 
 
 ## Papers that used this dataset
+If you would like your paper to be featured here, please send a PR. 
 
 
 
