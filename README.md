@@ -16,9 +16,7 @@ The datasets are stored in AWS S3. You can either download the traces to your lo
 | Dataset 	| Year 	|  	| Cache type 	| Time span (days) 	| # Trace 	| # Request (million) 	| Request  (TB) 	| # Object (million) 	| Object  (TB) 	| Source 	| Txt  format 	| OracleGeneral  format 	|
 |---	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|
 | Microsoft Cambridge 	| 2007 	|  	| block 	| 7 	| 13 	| 410 	| 10 	| 74 	| 3 	|  	|  	|  	|
-| FIU 	| 2008-2011 	|  	| block 	| 9-28 	| 9 	| 514 	| 1.7 	| 20 	| 0.057 	|  	|  	|  	|
 | CloudPhysics 	| 2015 	|  	| block 	| 7 	| 106 	| 2,114 	| 82 	| 492 	| 22 	|  	|  	|  	|
-| Systor 	| 2017 	|  	| block 	| 26 	| 6 	| 3,694 	| 88 	| 421 	| 15 	|  	|  	|  	|
 | Tencent Photo 	| 2018 	|  	| object 	| 8 	| 2 	| 5,650 	| 141 	| 1,038 	| 24 	|  	|  	|  	|
 | Wikimedia CDN 	| 2019 	|  	| object 	| 7 	| 3 	| 2,863 	| 200 	| 56 	| 13 	|  	|  	|  	|
 | Tencent CBS 	| 2020 	|  	| block 	| 8 	| 4030 	| 33,690 	| 1091 	| 551 	| 66 	|  	|  	|  	|
@@ -253,10 +251,6 @@ Because the size of these datasets, we recommend you to larger servers to run co
 
 
 ## Google synthetic I/O traces 
-
-
-
-## Baleen dataset 
 
 
 
