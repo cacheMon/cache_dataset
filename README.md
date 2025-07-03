@@ -320,7 +320,6 @@ The synthetic traces are generated for multiple disk categories across different
 - `file_offset`: File offset
 - `application`: Application owner of the file
 - `c_time`: File creation time
-- `m_time`: File modification time
 - `io_zone`: Warm or cold
 - `redundancy_type`: Replicated or erasure-coded
 - `op_type`: Read or write
@@ -328,8 +327,8 @@ The synthetic traces are generated for multiple disk categories across different
 - `from_flash_cache`: Whether the request is from flash cache
 - `cache_hit`: Whether the request is served by server's buffer cache
 - `request_io_size_bytes`: Size of the request
-- `response_io_size_bytes`: Size of the response
 - `disk_io_size_bytes`: Size of the disk operation
+- `response_io_size_bytes`: Size of the response
 - `start_time`: Request's arrival time at the server
 - `disk_time`: Disk read time (for cache-miss read)
 - `latency`: Latency of the operation (from arrival time to response time at the server)
