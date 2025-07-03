@@ -314,6 +314,8 @@ This dataset contains synthetically generated I/O traces that represent Google's
 
 The synthetic traces are generated for multiple disk categories across different storage clusters, with detailed validation performed over multiple days. The primary dataset showcases a week-long trace from February 24 to March 2, 2023, focusing on the largest disk category in one storage cluster. The synthesis methodology has been validated across various disk types and storage clusters, demonstrating consistent accuracy. Samping rate at 1/10,000.
 
+The details of the trace can be found in [Thesios: Synthesizing Accurate Counterfactual I/O Traces from I/O Samples](https://dl.acm.org/doi/10.1145/3620666.3651337).
+
 ### Trace Format
 
 - `filename`: Local filename
