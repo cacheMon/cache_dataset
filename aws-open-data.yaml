@@ -1,0 +1,62 @@
+Name: Open-source Cache Dataset
+Description: |
+  A comprehensive collection of production cache traces from major technology companies including Meta, Twitter, Google, Alibaba, Tencent, Microsoft, and CloudPhysics. The dataset includes key-value cache traces (Redis, Memcached), object cache traces (CDN), and block cache traces (storage systems) suitable for cache research, system evaluation, and performance analysis.
+Documentation: https://github.com/cacheMon/open-source-cache-dataset
+Contact: juncheng@seas.harvard.edu
+ManagedBy: Harvard University, School of Engineering and Applied Science
+UpdateFrequency: 
+Collabs:
+  ASDI:
+    Tags:
+      - cache systems
+      - distributed systems
+      - performance analysis
+      - storage systems
+      - machine learning
+Tags:
+  - aws-pds
+  - computer systems
+  - performance analysis
+  - cache
+  - storage
+  - machine learning
+  - research
+License: CC BY 4.0
+Resources:
+  - Description: Cache traces in plain text format
+    ARN: arn:aws:s3:::cache-dataset-bucket
+    Region: us-east-1
+    Type: S3 Bucket
+    Explore:
+    - '[Browse Dataset](https://console.aws.amazon.com/s3/buckets/cache-dataset-bucket/)'
+  - Description: Cache traces in OracleGeneral binary format
+    ARN: arn:aws:s3:::cache-dataset-bucket/oracleGeneral/
+    Region: us-east-1
+    Type: S3 Bucket
+    Explore:
+    - '[Browse OracleGeneral Format](https://console.aws.amazon.com/s3/buckets/cache-dataset-bucket/oracleGeneral/)'
+DataAtWork:
+  Tutorials:
+    - Title: Getting Started with Cache Trace Analysis
+      URL: https://github.com/cacheMon/open-source-cache-dataset#tutorial-using-cache-dataset-on-aws
+      AuthorName: Juncheng Yang
+      AuthorURL: https://junchengyang.com
+  Tools & Applications:
+    - Title: libCacheSim - Cache Simulation Platform
+      URL: https://libcachesim.com
+      AuthorName: Juncheng Yang
+      AuthorURL: https://junchengyang.com
+    - Title: distComp - Distributed Computing Framework
+      URL: https://github.com/1a1a11a/distComp
+      AuthorName: Juncheng Yang
+      AuthorURL: https://junchengyang.com
+  Publications:
+    - Title: "A large scale analysis of hundreds of in-memory cache clusters at Twitter"
+      URL: https://www.usenix.org/conference/osdi20/presentation/yang
+      AuthorName: Juncheng Yang, Yao Yue, Rashmi Vinayak
+    - Title: "Demystifying Cache Policies for Photo Stores at Scale: A Tencent Case Study"
+      URL: https://dl.acm.org/doi/10.1145/3205289.3205299
+      AuthorName: Tencent Research Team
+    - Title: "Improving Docker Registry Design based on Production Workload Analysis"
+      URL: https://www.usenix.org/conference/fast18/presentation/anwar
+      AuthorName: Ali Anwar et al.
