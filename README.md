@@ -26,7 +26,7 @@ The datasets are stored in AWS S3. You can either download the traces to your lo
 | **Block** | [Google](#google-synthetic-io-traces) | 2024 | 61 | 3 | 115 | 12,420 | - | - | [ASPLOS '24][src-google] | [Google Cloud][gcloud-google] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
 | | [MetaStorage](#meta-tectonic-cache-traces) | 2023 | 5 | 5 | 14 | 48 | 7 | 30 | [Cachelib][src-meta] | [S3][s3-metaStorage] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
 | | [Tencent CBS](#tencent-cloud-ebs-traces) | 2020 | 8 | 4,030 | 33,690 | 1091 | 551 | 66 | [ATC '20][src-tencentBlock] | [SNIA][snia-tencentBlock] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Alibaba Block](#alibaba-cloud-ebs-traces) | 2020 | 30 | 652 | 19,676 | 664 | 1,702 | 117 | [IISWC '20][src-alibabaBlock]  | [Host][host-alibabaBlock] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
+| | [Alibaba Block](#alibaba-cloud-ebs-traces) | 2020 | 30 | 1,000 | 19,676 | 664 | 1,702 | 117 | [IISWC '20][src-alibabaBlock]  | [Host][host-alibabaBlock] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
 | | [CloudPhysics](#cloudphysics-traces) | 2015 | 7 | 106 | 2,114 | 82 | 492 | 22 | [FAST '15][src-cloudPhysics] | [HF][hf-txt] | [HF][hf-oracleGeneral] |
 | | [Microsoft Cambridge](#msr-cambridge-traces) | 2007 | 7 | 13 | 410 | 10 | 74 | 3 | [FAST '08][src-msr] | [SNIA][snia-msr] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
 
@@ -431,7 +431,7 @@ Due to the large size of these datasets, we recommend using larger servers for c
 
 [Using libCacheSim to read the dataset](./tutorials/0_tutorial_dataset_reading.ipynb)
 
-[Using libCacheSim to plot and analyze the trace](./tutorials/1_tutorial_trace_analysis_and_plotting.ipynb)
+[Using libCacheSim to analyze and plot the trace](./tutorials/1_tutorial_trace_analysis_and_plotting.ipynb)
 
 [Using libCacheSim to run cache simulation](./tutorials/2_tutorial_cache_simulation.ipynb)
 
@@ -459,6 +459,7 @@ This work is licensed under the **Creative Commons Attribution 4.0 International
 
 > [!IMPORTANT]
 > **Term**
+>
 > **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 > 
 > **No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
