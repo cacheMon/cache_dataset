@@ -480,6 +480,10 @@ The storage of this dataset is sponsored by **AWS** under open data agreement.
 
 If you would like your paper to be featured here, please send a PR.
 
+## References 
+
+If you used this open-source datasets in your research, please cite the papers where the traces originally released, `bibtex` reference entris can be found in [references.md](./references.md).
+
 
 --------------------------------
 [libCacheSim]:https://libcachesim.com
