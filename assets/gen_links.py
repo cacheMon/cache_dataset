@@ -18,8 +18,12 @@ special_link = "https://cache-datasets.s3.amazonaws.com/cache_dataset_txt/2020_t
 
 # Example: [google-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2024_google
 for dataset_name in datasets_name:
-    tag = f"{dataset_name.split('/')[0].split('_')[1]}-s3-txt"
-    print(f"[{tag}]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/{dataset_name}")
+    pure_tag = dataset_name.split('/')[0].split('_')[1]
+    if pure_tag == "wiki":
+        tag = f"{dataset_name.split('/')[0]}"
+    else:
+        tag = pure_tag
+    print(f"[{tag}-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/{dataset_name}")
 
 print(f"[twitter-s3-txt]: {special_link}")
 

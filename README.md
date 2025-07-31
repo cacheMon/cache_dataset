@@ -20,7 +20,7 @@ The datasets are stored in AWS S3. You can either download the traces to your lo
 | **Key-value** | [MetaKV](#meta-key-value-cache-traces) | 2022 | 1 | 5 | 1,644 | 958 | 82 | 76 | [Cachelib][src-meta] | [S3][metaKV-s3-txt] | [S3][metaKV-s3-oracleGeneral] |
 | | [Twitter](#twitter-twemcache-request-traces) | 2020 | 7 | 54 | 195,441 | 106 | 10,650 | 6 | [OSDI '20][src-twitter] | [SNIA][snia-twitter] \| [S3][twitter-s3-txt] | [S3][twitter-s3-oracleGeneral] |
 | **Object** | [MetaCDN](#meta-cdn-request-traces) | 2025 | 7 | 3 | 231 | 8,800 | 76 | 1,563 | [Cachelib][src-meta] | [S3][metaCDN-s3-txt] | [S3][metaCDN-s3-oracleGeneral] |
-| | [Wikimedia CDN](#wikimedia-cdn-request-traces) | 2019 | 7 | 3 | 2,863 | 200 | 56 | 13 | [Wikitech][src-wiki] | [Wiki][host-wiki] \| [S3][wiki-s3-txt] | [S3][wiki-s3-oracleGeneral] |
+| | [Wikimedia CDN](#wikimedia-cdn-request-traces) | 2019 | 7 | 3 | 2,863 | 200 | 56 | 13 | [Wikitech][src-wiki] | [Wiki][host-wiki] \| [S3 (2007)][2007_wiki-s3-txt] [S3 (2016)][2016_wiki-s3-txt] [S3 (2019)][2019_wiki-s3-txt] | [S3][wiki-s3-oracleGeneral] |
 | | [Tencent Photo](#tencent-photo-cdn-request-traces) | 2018 | 8 | 2 | 5,650 | 141 | 1,038 | 24 | [ICS '18][src-tencentPhoto] | [SNIA][snia-tencentPhoto] \| [S3][tencentPhoto-s3-txt] | [S3][tencentPhoto-s3-oracleGeneral] |
 | | [IBM Docker](#ibm-docker-dataset) | 2018 | 75 | 7 | 38 | 11 | - | 171|  [FAST '18][src-docker] | [SNIA][snia-docker] \| [S3][docker-s3-txt] | [S3][docker-s3-oracleGeneral] |
 | **Block** | [Google](#google-synthetic-io-traces) | 2024 | 61 | 3 | 115 | 12,420 | - | - | [ASPLOS '24][src-google] | [Google Cloud][gcloud-google] \| [S3][google-s3-txt] | [S3][google-s3-oracleGeneral] |
@@ -203,7 +203,7 @@ These are request traces collected from Wikimedia’s upload cache infrastructur
 - `X_Cache`: CDN caching metadata and cache hierarchy
 
 ### Download Links
-- **Plain text**: [Wiki][host-wiki] \| [S3][wiki-s3-txt]
+- **Plain text**: [Wiki][host-wiki] \| [S3 (2007)][2007_wiki-s3-txt] [S3 (2016)][2016_wiki-s3-txt] [S3 (2019)][2019_wiki-s3-txt]
 - **OracleGeneral format**: [S3][wiki-s3-oracleGeneral]
 
 ---
@@ -522,18 +522,19 @@ If you used this open-source datasets in your research, please cite the papers w
 [host-alibabaBlock]: https://yida.alibaba-inc.com/o/alibaba_block_traces_2020_survey#/
 
 <!-- our s3 links -->
-[wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2007_wiki/
+[2007_wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2007_wiki/
 [msr-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2008_msr/
-[wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2016_wiki/
+[2016_wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2016_wiki/
 [systor-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2017_systor/
 [tencentPhoto-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2018_tencentPhoto/
-[wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2019_wiki/
+[2019_wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2019_wiki/
 [tencentBlock-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2020_tencentBlock/
 [metaKV-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2022_metaKV/
 [metaCDN-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2023_metaCDN/
 [metaStorage-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2023_metaStorage/
 [google-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2024_google/
 [twitter-s3-txt]: https://cache-datasets.s3.amazonaws.com/cache_dataset_txt/2020_twr_cdn.zst
+
 [msr-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2007_msr/
 [cloudphysics-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2015_cloudphysics/
 [tencentPhoto-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2018_tencentPhoto/
@@ -547,7 +548,9 @@ If you used this open-source datasets in your research, please cite the papers w
 
 <!-- Need update -->
 [docker-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/
-[docker-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/
 [cloudPhysics-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/
 [alibabaBlock-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/
+
+[docker-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/
+[google-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/
 
