@@ -159,7 +159,7 @@ Meta CDN uses a two-layer hierarchy, where the first layer is [FNA cluster](http
 * `vip_type`: unknown
 
 ### Download link
-* **Plain text**: [S3][s3-metaCDN] \| [S3][metaCDN-s3-txt] 
+* **Plain text**: [S3][metaCDN-s3-txt] 
 * **OracleGeneral format**: [S3][metaCDN-s3-oracleGeneral]
 
 ---
@@ -327,7 +327,7 @@ The original release can be found at [here][src-meta].
 
 
 ### Download Links
-* **Plain text**: [S3][s3-metaStorage] \| [S3][metaStorage-s3-txt]
+* **Plain text**: [S3][metaStorage-s3-txt]
 * **OracleGeneral format**: [S3][metaStorage-s3-oracleGeneral]
 
 ---
