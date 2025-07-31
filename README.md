@@ -17,18 +17,18 @@ The datasets are stored in AWS S3. You can either download the traces to your lo
 
 | Cache Type | Dataset | Year | Time span (days) | # Trace | # Request (million) | Request (TB) | # Object (million) | Object (TB) | Source | Txt format | OracleGeneral format |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Key-value** | [MetaKV](#meta-key-value-cache-traces) | 2022 | 1 | 5 | 1,644 | 958 | 82 | 76 | [Cachelib][src-meta] | [S3][s3-metaKV] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Twitter](#twitter-twemcache-request-traces) | 2020 | 7 | 54 | 195,441 | 106 | 10,650 | 6 | [OSDI '20][src-twitter] | [SNIA][snia-twitter] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| **Object** | [MetaCDN](#meta-cdn-request-traces) | 2025 | 7 | 3 | 231 | 8,800 | 76 | 1,563 | [Cachelib][src-meta] | [S3][s3-metaCDN] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Wikimedia CDN](#wikimedia-cdn-request-traces) | 2019 | 7 | 3 | 2,863 | 200 | 56 | 13 | [Wikitech][src-wiki] | [Wiki][host-wiki] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Tencent Photo](#tencent-photo-cdn-request-traces) | 2018 | 8 | 2 | 5,650 | 141 | 1,038 | 24 | [ICS '18][src-tencentPhoto] | [SNIA][snia-tencentPhoto] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [IBM Docker](#ibm-docker-dataset) | 2018 | 75 | 7 | 38 | 11 | - | 171|  [FAST '18][src-docker] | [SNIA][snia-docker] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| **Block** | [Google](#google-synthetic-io-traces) | 2024 | 61 | 3 | 115 | 12,420 | - | - | [ASPLOS '24][src-google] | [Google Cloud][gcloud-google] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [MetaStorage](#meta-tectonic-cache-traces) | 2023 | 5 | 5 | 14 | 48 | 7 | 30 | [Cachelib][src-meta] | [S3][s3-metaStorage] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Tencent CBS](#tencent-cloud-ebs-traces) | 2020 | 8 | 4,030 | 33,690 | 1091 | 551 | 66 | [ATC '20][src-tencentBlock] | [SNIA][snia-tencentBlock] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Alibaba Block](#alibaba-cloud-ebs-traces) | 2020 | 30 | 1,000 | 19,676 | 664 | 1,702 | 117 | [IISWC '20][src-alibabaBlock]  | [Host][host-alibabaBlock] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [CloudPhysics](#cloudphysics-traces) | 2015 | 7 | 106 | 2,114 | 82 | 492 | 22 | [FAST '15][src-cloudPhysics] | [HF][hf-txt] | [HF][hf-oracleGeneral] |
-| | [Microsoft Cambridge](#msr-cambridge-traces) | 2007 | 7 | 13 | 410 | 10 | 74 | 3 | [FAST '08][src-msr] | [SNIA][snia-msr] \| [HF][hf-txt] | [HF][hf-oracleGeneral] |
+| **Key-value** | [MetaKV](#meta-key-value-cache-traces) | 2022 | 1 | 5 | 1,644 | 958 | 82 | 76 | [Cachelib][src-meta] | [S3][metaKV-s3-txt] | [S3][metaKV-s3-oracleGeneral] |
+| | [Twitter](#twitter-twemcache-request-traces) | 2020 | 7 | 54 | 195,441 | 106 | 10,650 | 6 | [OSDI '20][src-twitter] | [SNIA][snia-twitter] \| [S3][twitter-s3-txt] | [S3][twitter-s3-oracleGeneral] |
+| **Object** | [MetaCDN](#meta-cdn-request-traces) | 2025 | 7 | 3 | 231 | 8,800 | 76 | 1,563 | [Cachelib][src-meta] | [S3][metaCDN-s3-txt] | [S3][metaCDN-s3-oracleGeneral] |
+| | [Wikimedia CDN](#wikimedia-cdn-request-traces) | 2019 | 7 | 3 | 2,863 | 200 | 56 | 13 | [Wikitech][src-wiki] | [Wiki][host-wiki] \| [S3][wiki-s3-txt] | [S3][wiki-s3-oracleGeneral] |
+| | [Tencent Photo](#tencent-photo-cdn-request-traces) | 2018 | 8 | 2 | 5,650 | 141 | 1,038 | 24 | [ICS '18][src-tencentPhoto] | [SNIA][snia-tencentPhoto] \| [S3][tencentPhoto-s3-txt] | [S3][tencentPhoto-s3-oracleGeneral] |
+| | [IBM Docker](#ibm-docker-dataset) | 2018 | 75 | 7 | 38 | 11 | - | 171|  [FAST '18][src-docker] | [SNIA][snia-docker] \| [S3][docker-s3-txt] | [S3][docker-s3-oracleGeneral] |
+| **Block** | [Google](#google-synthetic-io-traces) | 2024 | 61 | 3 | 115 | 12,420 | - | - | [ASPLOS '24][src-google] | [Google Cloud][gcloud-google] \| [S3][google-s3-txt] | [S3][google-s3-oracleGeneral] |
+| | [MetaStorage](#meta-tectonic-cache-traces) | 2023 | 5 | 5 | 14 | 48 | 7 | 30 | [Cachelib][src-meta] | [S3][metaStorage-s3-txt] | [S3][metaStorage-s3-oracleGeneral] |
+| | [Tencent CBS](#tencent-cloud-ebs-traces) | 2020 | 8 | 4,030 | 33,690 | 1091 | 551 | 66 | [ATC '20][src-tencentBlock] | [SNIA][snia-tencentBlock] \| [S3][tencentBlock-s3-txt] | [S3][tencentBlock-s3-oracleGeneral] |
+| | [Alibaba Block](#alibaba-cloud-ebs-traces) | 2020 | 30 | 1,000 | 19,676 | 664 | 1,702 | 117 | [IISWC '20][src-alibabaBlock]  | [Host][host-alibabaBlock] \| [S3][alibabaBlock-s3-txt] | [S3][alibabaBlock-s3-oracleGeneral] |
+| | [CloudPhysics](#cloudphysics-traces) | 2015 | 7 | 106 | 2,114 | 82 | 492 | 22 | [FAST '15][src-cloudPhysics] | [S3][cloudPhysics-s3-txt] | [S3][cloudPhysics-s3-oracleGeneral] |
+| | [Microsoft Cambridge](#msr-cambridge-traces) | 2007 | 7 | 13 | 410 | 10 | 74 | 3 | [FAST '08][src-msr] | [SNIA][snia-msr] \| [S3][msr-s3-txt] | [S3][msr-s3-oracleGeneral] |
 
 > [!NOTE]
 > A more detailed description of each dataset can be found in the source link and the sections below.
@@ -92,8 +92,8 @@ Each host uses (roughly) 42 GB of DRAM and 930 GB of SSD for caching.The open-so
 
 
 ### Download link
-* **Plain text**: [S3][s3-metaKV] \| [HF][hf-txt]
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [S3][metaKV-s3-txt]
+* **OracleGeneral format**: [S3][metaKV-s3-oracleGeneral]
 
 ---
 
@@ -117,8 +117,8 @@ The original traces are plain text structured as comma-separated columns. Each r
 * `TTL`: the time-to-live (TTL) of the object set by the client, it is 0 when the request is not a write request.
 
 ### Download link
-* **Plain text**: [SNIA][snia-twitter] \| [HF][hf-txt]
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [SNIA][snia-twitter] \| [S3][twitter-s3-txt]
+* **OracleGeneral format**: [S3][twitter-s3-oracleGeneral]
 
 
 # Object Cache Traces
@@ -159,8 +159,8 @@ Meta CDN uses a two-layer hierarchy, where the first layer is [FNA cluster](http
 * `vip_type`: unknown
 
 ### Download link
-* **Plain text**: [S3][s3-metaCDN] \| [HF][hf-txt]
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [S3][s3-metaCDN] \| [S3][metaCDN-s3-txt] 
+* **OracleGeneral format**: [S3][metaCDN-s3-oracleGeneral]
 
 ---
 
@@ -203,8 +203,8 @@ These are request traces collected from Wikimedia’s upload cache infrastructur
 - `X_Cache`: CDN caching metadata and cache hierarchy
 
 ### Download Links
-- **Plain text**: [Wiki][host-wiki] \| [HF][hf-txt]
-- **OracleGeneral format**: [HF][hf-oracleGeneral] 
+- **Plain text**: [Wiki][host-wiki] \| [S3][wiki-s3-txt]
+- **OracleGeneral format**: [S3][wiki-s3-oracleGeneral]
 
 ---
 
@@ -235,8 +235,8 @@ QQPhoto supports separate photo upload and download channels and two-tier cache 
 - `b`: 8,387,821 bytes
 
 ### Download Links
-- **Plain text**: [SNIA][snia-tencentPhoto] \| [HF][hf-txt] 
-- **OracleGeneral format**: [HF][hf-oracleGeneral] 
+- **Plain text**: [SNIA][snia-tencentPhoto] \| [S3][tencentPhoto-s3-txt]
+- **OracleGeneral format**: [S3][tencentPhoto-s3-oracleGeneral]
 
 ---
 
@@ -260,9 +260,8 @@ The details of the trace can be found in [*Improving Docker Registry Design base
 - `timestamp`: Request arrival time (UTC)
 
 ### Download Links
-- **Plain text**: [SNIA][snia-docker] \| [HF][hf-txt]
-- **OracleGeneral format**: [HF][hf-oracleGeneral] 
-
+- **Plain text**: [SNIA][snia-docker] \| [S3][docker-s3-txt] 
+- **OracleGeneral format**: [S3][docker-s3-oracleGeneral]
 
 ---
 
@@ -299,8 +298,8 @@ The details of the trace can be found in [*Thesios: Synthesizing Accurate Counte
 - `simulated_latency`: Latency of the operation (adjusted by the trace reorganizer)
 
 ### Download Links
-* **Plain text**:[Google Cloud][gcloud-google] \| [HF][hf-txt]
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [Google Cloud][gcloud-google] \| [S3][google-s3-txt]
+* **OracleGeneral format**: [S3][google-s3-oracleGeneral]
 
 ---
 
@@ -328,8 +327,8 @@ The original release can be found at [here][src-meta].
 
 
 ### Download Links
-* **Plain text**: [S3][s3-metaStorage] \| [HF][hf-txt]
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [S3][s3-metaStorage] \| [S3][metaStorage-s3-txt]
+* **OracleGeneral format**: [S3][metaStorage-s3-oracleGeneral]
 
 ---
 
@@ -348,8 +347,8 @@ These traces were well-suited for per-volume analysis, i.e., studying access pat
 - `VolumeID`: Anonymized ID of the cloud virtual volume (CVV)
 
 ### Download Links
-* **Plain text**: [SNIA][snia-tencentBlock] \| [HF][hf-txt]
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [SNIA][snia-tencentBlock] \| [S3][tencentBlock-s3-txt]
+* **OracleGeneral format**: [S3][tencentBlock-s3-oracleGeneral]
 
 ---
 
@@ -373,8 +372,8 @@ The selected disks are Ultra Disk products, a cost-effective tier in Alibaba Clo
 - `capacity`: Capacity of the virtual disk in bytes
 
 ### Download Links
-* **Plain text**: [Host][host-alibabaBlock] \| [HF][hf-txt] 
-* **OracleGeneral format**:  [HF][hf-oracleGeneral]
+* **Plain text**: [Host][host-alibabaBlock] \| [S3][alibabaBlock-s3-txt]
+* **OracleGeneral format**: [S3][alibabaBlock-s3-oracleGeneral]
 
 ---
 
@@ -395,8 +394,8 @@ The details of the trace can be found in [*Efficient MRC Construction with SHARD
 - `ver`: A version field used to distinguish between VSCSI1 and VSCSI2 formats
 
 ### Download Links
-* **Plain text**: [HF][hf-txt]
-* **OracleGeneral format**: [HF][hf-oracleGeneral]
+* **Plain text**: [S3][cloudPhysics-s3-txt]
+* **OracleGeneral format**: [S3][cloudPhysics-s3-oracleGeneral]
 
 ---
 
@@ -418,8 +417,8 @@ Details of the trace can be found in [*Write Off-Loading: Practical Power Manage
 - `ResponseTime`: The time taken by the I/O to complete, measured in Windows filetime units.
 
 ### Download Links
-* **Plain text**: [SNIA][snia-msr] \| [HF][hf-txt]
-* **OracleGeneral format**: [HF][hf-oracleGeneral]
+* **Plain text**: [SNIA][snia-msr] \| [S3][msr-s3-txt]
+* **OracleGeneral format**: [S3][msr-s3-oracleGeneral]
 
 ---
 
@@ -521,3 +520,34 @@ If you used this open-source datasets in your research, please cite the papers w
 <!-- own host -->
 [host-wiki]:https://analytics.wikimedia.org/published/datasets/caching/2019/
 [host-alibabaBlock]: https://yida.alibaba-inc.com/o/alibaba_block_traces_2020_survey#/
+
+<!-- our s3 links -->
+[wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2007_wiki/
+[msr-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2008_msr/
+[wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2016_wiki/
+[systor-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2017_systor/
+[tencentPhoto-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2018_tencentPhoto/
+[wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2019_wiki/
+[tencentBlock-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2020_tencentBlock/
+[metaKV-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2022_metaKV/
+[metaCDN-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2023_metaCDN/
+[metaStorage-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2023_metaStorage/
+[google-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2024_google/
+[twitter-s3-txt]: https://cache-datasets.s3.amazonaws.com/cache_dataset_txt/2020_twr_cdn.zst
+[msr-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2007_msr/
+[cloudphysics-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2015_cloudphysics/
+[tencentPhoto-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2018_tencentPhoto/
+[wiki-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2019_wiki/
+[alibabaBlock-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2020_alibabaBlock/
+[tencentBlock-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2020_tencentBlock/
+[twitter-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2020_twitter/
+[metaCDN-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2022_metaCDN/
+[metaKV-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2022_metaKV/
+[metaStorage-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/2022_metaStorage/
+
+<!-- Need update -->
+[docker-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/
+[docker-s3-oracleGeneral]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_oracleGeneral/
+[cloudPhysics-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/
+[alibabaBlock-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/
+
