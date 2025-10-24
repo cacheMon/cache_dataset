@@ -54,6 +54,9 @@ All datasets are compressed with [zstd](https://github.com/facebook/zstd). You c
 > [!NOTE]
 > libCacheSim can directly work with compressed data, so no decompression is needed if you use libCacheSim to run simulations. 
 
+#### Trace Conversion
+
+The folder `conversion_scripts` contains scripts we use to convert the original traces from the sources into formats suitable for using with the [libCacheSim][libCacheSim] platform in a manner that respects the original semantics of the source traces (to the best of our knowledge).
 
 # Key-value Cache Traces
 
@@ -315,7 +318,7 @@ The original release can be found at [here][src-meta].
 
 - `op_time`: The time of the request
 - `block_id`: The requested block ID
-- `block_id_size`: The size of the requested block (in MB), this field is always 40
+- `block_id_size`: The size of the block_id field, this field is always 40
 - `io_size`: The requested size, note that requests often do not ask for the full block
 - `io_offset`: The start offset in the block
 - `user_name`: Anonymized username (represent different use cases)
@@ -325,6 +328,7 @@ The original release can be found at [here][src-meta].
 - `host_name`: Anonymized host name that serves the request
 - `rs_shard_id`: Reed-solomon shard ID
 
+A storage node block is uniquely identified by its block_id + rs_shard_id. The block is in turn broken into chunks to be cached. We have a script in `conversion_scripts/conv_meta_block.cpp` that does this breakdown and create a new trace where each chunk is treated as a cache object.
 
 ### Download Links
 * **Plain text**: [S3][metaStorage-s3-txt]
