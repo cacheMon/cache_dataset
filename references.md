@@ -1,4 +1,18 @@
 ```bibtex
+
+@inproceedings {xia2026-s4fifo,
+    author = {Haocheng Xia and William Nixon and Bintang Dwi Marthen and Pranav Bhandari and Juncheng Yang},
+    title = {{Learning-Augmented} Heuristics: Simple Yet Smart, Robust and Interpretable Cache Eviction},
+    booktitle = {20th USENIX Symposium on Operating Systems Design and Implementation (OSDI 26)},
+    year = {2026},
+    isbn = {978-1-939133-55-7},
+    address = {Seattle, WA},
+    pages = {2241--2259},
+    url = {https://www.usenix.org/conference/osdi26/presentation/xia},
+    publisher = {USENIX Association},
+    month = jul
+}
+
 @inproceedings{yang2020-workload,
     author = {Juncheng Yang and Yao Yue and K. V. Rashmi},
     title = {A large scale analysis of hundreds of in-memory cache clusters at Twitter},
