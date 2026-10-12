@@ -1,6 +1,6 @@
 # Open-source Cache Dataset
 
-The open-source cache dataset were compiled from multiple sources, including Microsoft, CloudPhysics, Tencent, Alibaba, Twitter, Meta production systems. 
+The open-source cache dataset were compiled from multiple sources, including Microsoft, CloudPhysics, Tencent, Alibaba, Twitter, Meta, and Cloudflare production systems.
 We provide both plain text and [oracleGeneral](#oraclegeneral-format-structure) format. 
 
 You can use the dataset to perform different tasks, including but not limited to:
@@ -8,7 +8,7 @@ You can use the dataset to perform different tasks, including but not limited to
 * **Analysis**: Gaining insights about production systems and observing access patterns (diurnal, weekly)
 * **Research**: Designing and evaluating new distributed systems and databases
 
-The datasets are stored in AWS S3. You can either download the traces to your local cluster, or launch some EC2 instances to perform computation. Since the dataset is large, we recommend provisioning a cluster to run the computation.You can use [mountpoint](https://github.com/awslabs/mountpoint-s3) to mount the bucket on each node and [distComp](https://github.com/1a1a11a/distComp) to launch computation jobs. 
+Most datasets are stored in AWS S3; externally hosted datasets such as Cloudflare use the source download links below. You can either download the traces to your local cluster, or launch some EC2 instances to perform computation. Since the dataset is large, we recommend provisioning a cluster to run the computation.You can use [mountpoint](https://github.com/awslabs/mountpoint-s3) to mount the bucket on each node and [distComp](https://github.com/1a1a11a/distComp) to launch computation jobs.
 
 
 ## Dataset description
@@ -20,6 +20,8 @@ The datasets are stored in AWS S3. You can either download the traces to your lo
 | **Key-value** | [MetaKV](#meta-key-value-cache-traces) | 2022 | 1 | 5 | 1,644 | 958 | 82 | 76 | [Cachelib][src-meta] | [S3][metaKV-s3-txt] | [S3][metaKV-s3-oracleGeneral] |
 | | [Twitter](#twitter-twemcache-request-traces) | 2020 | 7 | 54 | 195,441 | 106 | 10,650 | 6 | [OSDI '20][src-twitter] | [SNIA][snia-twitter] \| [S3][twitter-s3-txt] | [S3][twitter-s3-oracleGeneral] |
 | **Object** | [MetaCDN](#meta-cdn-request-traces) | 2025 | 7 | 3 | 231 | 8,800 | 76 | 1,563 | [Cachelib][src-meta] | [S3][metaCDN-s3-txt] | [S3][metaCDN-s3-oracleGeneral] |
+| | [Cloudflare CDN (nginx-cache)](#2021-release) | 2021 | 8 | 10 | - | - | - | - | [Cloudflare Research][src-cloudflare] | [Host][cloudflare-2021-nginxlog] | - |
+| | [Cloudflare CDN](#2025-release) | 2025 | 32 | 8 | - | - | - | - | Cloudflare Research | [Host](#cloudflare-2025-downloads) | - |
 | | [Wikimedia CDN](#wikimedia-cdn-request-traces) | 2019 | 7 | 3 | 2,863 | 200 | 56 | 13 | [Wikitech][src-wiki] | [Wiki][host-wiki] \| [S3 (2007)][2007_wiki-s3-txt] [S3 (2016)][2016_wiki-s3-txt] [S3 (2019)][2019_wiki-s3-txt] | [S3][wiki-s3-oracleGeneral] |
 | | [Tencent Photo](#tencent-photo-cdn-request-traces) | 2018 | 8 | 2 | 5,650 | 141 | 1,038 | 24 | [ICS '18][src-tencentPhoto] | [SNIA][snia-tencentPhoto] \| [S3][tencentPhoto-s3-txt] | [S3][tencentPhoto-s3-oracleGeneral] |
 | | [IBM Docker](#ibm-docker-dataset) | 2018 | 75 | 7 | 38 | 11 | - | 171|  [FAST '18][src-docker] | [SNIA][snia-docker] \| [S3][docker-s3-txt] | [S3][docker-s3-oracleGeneral] |
@@ -37,6 +39,8 @@ The datasets are stored in AWS S3. You can either download the traces to your lo
 ### Dataset Formats
 
 We provide both plain text format that is human readable and `oracleGeneral` format that is suitable for using with [libCacheSim][libCacheSim] platform. 
+
+The Cloudflare entries link to the original compressed text traces. This collection does not currently provide an S3 mirror or an `oracleGeneral` conversion for them.
 
 #### OracleGeneral Format Structure
 
@@ -161,6 +165,87 @@ Meta CDN uses a two-layer hierarchy, where the first layer is [FNA cluster](http
 ### Download link
 * **Plain text**: [S3][metaCDN-s3-txt] 
 * **OracleGeneral format**: [S3][metaCDN-s3-oracleGeneral]
+
+---
+
+## Cloudflare CDN Request Traces
+
+Cloudflare has released CDN cache request traces from 2021 and 2025. The releases use different formats and download hosts.
+
+### 2021 release
+
+The [Cloudflare Research dataset portal][src-cloudflare] provides nginx-cache traces and ClickHouse-derived request traces. The nginx-cache directory contains 79 daily `.zst` files from 10 servers, covering August 20–27, 2021. The 2021 summary row above describes this nginx-cache portion; the ClickHouse variants are available separately.
+
+#### Trace Format
+
+The nginx-cache fields, in the order documented by the source, are:
+
+```text
+client country
+hot object (bool)
+timestamp
+obj_id
+response body size
+http method
+content type
+file extension
+n level
+expire ttl
+age
+cache status
+zone id (md5 hash)
+zone plan
+chunked response
+has query
+n param in query
+cache control
+hostname (sha1 hash)
+http range
+```
+
+The ClickHouse traces have a different schema and are sampled by object ID. See the [original format descriptions][src-cloudflare] before combining or comparing the variants.
+
+#### Download Links
+
+* **nginx-cache traces**: [Cloudflare Research][cloudflare-2021-nginxlog]
+* **ClickHouse traces**: [Cloudflare Research][cloudflare-2021-clickhouse]
+* **ClickHouse miss traces**: [Cloudflare Research][cloudflare-2021-clickhouse-miss]
+
+Downloads through this portal require accepting Cloudflare's source terms.
+
+### 2025 release
+
+This release contains eight server traces collected between April 27 and May 28, 2025. The `.csv.zst` files are hosted directly at `objects.research.cloudflare.com`, separately from the 2021 dataset portal, and total approximately 49.6 GB compressed.
+
+#### Trace Format
+
+Each file is a zstd-compressed CSV with this header:
+
+```csv
+timestamp,key,zone,size,expiry_time,stale_time,method,mime
+```
+
+* `timestamp`: Unix request time in seconds
+* `key`: hashed cache object identifier, represented as a hexadecimal string
+* `zone`: hashed domain identifier, represented as a hexadecimal string
+* `size`: cached object size in bytes
+* `expiry_time`: absolute expiry time in Unix seconds; subtract `timestamp` to obtain the remaining TTL
+* `stale_time`: additional stale-serving window in seconds
+* `method`: HTTP method, encoded as `0` for `GET` and `1` for `PURGE`
+* `mime`: object MIME type
+
+#### Cloudflare 2025 Downloads
+
+Each link below downloads one server's compressed trace:
+
+* [106m105.csv.zst][cloudflare-2025-106m105]
+* [106m106.csv.zst][cloudflare-2025-106m106]
+* [243m12.csv.zst][cloudflare-2025-243m12]
+* [243m13.csv.zst][cloudflare-2025-243m13]
+* [411m264.csv.zst][cloudflare-2025-411m264]
+* [411m325.csv.zst][cloudflare-2025-411m325]
+* [472m378.csv.zst][cloudflare-2025-472m378]
+* [472m379.csv.zst][cloudflare-2025-472m379]
 
 ---
 
@@ -456,6 +541,8 @@ If you have any questions, please join the [Google Group](https://groups.google.
 
 This work is licensed under the **Creative Commons Attribution 4.0 International Public License (CC BY 4.0)**. To obtain a copy of this license, see LICENSE-CC-BY-4.0.txt in the archive, visit CreativeCommons.org or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
+Externally hosted Cloudflare traces remain subject to Cloudflare's source terms. Its [dataset portal][src-cloudflare] specifies [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) for non-commercial research purposes. This collection's CC BY 4.0 license does not replace the terms of the linked Cloudflare data.
+
 > [!IMPORTANT]
 > **Term**
 >
@@ -497,6 +584,7 @@ If you used this open-source datasets in your research, please cite the papers w
 [src-alibabaBlock]:http://www.cse.cuhk.edu.hk/~pclee/www/pubs/iiswc20.pdf
 [src-cloudPhysics]:https://www.usenix.org/system/files/conference/fast15/fast15-paper-waldspurger.pdf
 [src-msr]:https://www.usenix.org/legacy/event/fast08/tech/full_papers/narayanan/narayanan.pdf
+[src-cloudflare]:https://datasets.research.cloudflare.com/cache-request/
 
 <!-- hugging face -->
 [hf-txt]:https://huggingface.co/datasets/1a1a11a/cache_dataset_txt
@@ -520,6 +608,19 @@ If you used this open-source datasets in your research, please cite the papers w
 <!-- own host -->
 [host-wiki]:https://analytics.wikimedia.org/published/datasets/caching/2019/
 [host-alibabaBlock]: https://yida.alibaba-inc.com/o/alibaba_block_traces_2020_survey#/
+
+<!-- Cloudflare original hosts -->
+[cloudflare-2021-nginxlog]: https://datasets.research.cloudflare.com/cache-request/nginxlog/
+[cloudflare-2021-clickhouse]: https://datasets.research.cloudflare.com/cache-request/clickhouse/
+[cloudflare-2021-clickhouse-miss]: https://datasets.research.cloudflare.com/cache-request/clickhouse_miss/
+[cloudflare-2025-106m105]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/106m105.csv.zst
+[cloudflare-2025-106m106]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/106m106.csv.zst
+[cloudflare-2025-243m12]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/243m12.csv.zst
+[cloudflare-2025-243m13]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/243m13.csv.zst
+[cloudflare-2025-411m264]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/411m264.csv.zst
+[cloudflare-2025-411m325]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/411m325.csv.zst
+[cloudflare-2025-472m378]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/472m378.csv.zst
+[cloudflare-2025-472m379]: https://objects.research.cloudflare.com/@ikhor/cdn-traces/472m379.csv.zst
 
 <!-- our s3 links -->
 [2007_wiki-s3-txt]: https://s3.amazonaws.com/cache-datasets/index.html#cache_dataset_txt/2007_wiki/
